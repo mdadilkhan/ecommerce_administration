@@ -2,7 +2,7 @@ import React from 'react'
 import {Navbar, Container,Nav,} from "react-bootstrap"
 import {NavLink,Link} from "react-router-dom"
 
-function Header() {
+const Header=(props)=> {
     return (
         <>
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

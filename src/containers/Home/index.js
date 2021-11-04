@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap"
 import React from 'react'
 import Layout from '../../components/Layout'
 
-function Home() {
+const Home=(props)=> {
     return (
         <>
          <Layout>

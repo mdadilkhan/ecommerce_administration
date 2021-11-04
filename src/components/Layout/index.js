@@ -2,7 +2,7 @@ import React from 'react'
 import Header from "../Header/index";
 
 
-function Layout(props) {
+const Layout=(props)=> {
     return (
        <>
             <Header />

@@ -4,7 +4,7 @@ import { Container,Form,Button, Row ,Col} from "react-bootstrap"
 import Input from '../../components/UI/Input'
 
 
-function Signup() {
+const Signup=(props)=> {
     return (
        <>
           <Layout>
