@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 
 
 
-console.log("rootReducer>>",rootReducer);
+// console.log("rootReducer>>",rootReducer);
 
 const store=createStore(rootReducer,applyMiddleware(thunk));
 

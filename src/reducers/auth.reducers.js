@@ -1,25 +1,38 @@
 import { authConstants } from "../actions/constants"
 
 const initState={
-    name:'adil'
+    token:null,
+    user:{
+        firstName: '',
+        lastName: '',
+        email: '',
+        picture: ''
+    },
+    authenticate:false,
+    authenticating:false
 };
 
 
 const initial = (state=initState,action) => {
-    
-   
-    // console.log("action>>>",action);
-    // console.log("type>>",action.type);
-    // console.log("payload>>>",action.payload);
-
+    // console.log(action);
     switch(action.type){
-        case authConstants.LOGIN_REQUEST:
+         case authConstants.LOGIN_REQUEST:
           state={
               ...state,
-              ...action.payload
+              authenticating:true
               
           }
           break;
+         case authConstants.LOGIN_SUCCESS:
+             state={
+                 ...state,
+                 user:action.payload.user,
+                 token:action.payload.token,
+                 authenticate:true,
+                 authenticating:false
+             }
+             break;
+
           default:
     }
     return state;
