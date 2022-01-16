@@ -1,8 +1,8 @@
-import React,{ useState,useEffect} from 'react'
+import React,{ useState} from 'react'
 import Layout from '../../components/Layout'
 import { Container,Form,Button, Row ,Col} from "react-bootstrap"
 import Input from '../../components/UI/Input'
-import { isUserLoggedIn, login } from '../../actions'
+import { login } from '../../actions'
 import {useDispatch,useSelector} from 'react-redux';
 import { Redirect } from 'react-router-dom'
 
@@ -25,12 +25,7 @@ const Signin=(props)=> {
     //declaring useDispatch() function for action from compoent to auth.action.js 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if(!auth.authenticate){
-            dispatch(isUserLoggedIn());
-        }
-       
-    },[]); 
+   
 
 
 
@@ -44,7 +39,7 @@ const Signin=(props)=> {
            email,
            password
         }
-        //dispatch to action file
+        //dispatch to auth.action.js in action file
         dispatch(login(user));
     }
 
