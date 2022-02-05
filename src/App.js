@@ -10,6 +10,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import Products from './containers/Products';
 import Orders from './containers/Orders';
 import Category from './containers/Category';
+import NewPage from './containers/NewPage';
 
 function App() {
 
@@ -32,6 +33,7 @@ const auth = useSelector(state => state.auth)
       
            <Switch>
              <PrivateRoute path="/" exact component={Home}/>
+             <PrivateRoute path="/page" component={NewPage}/>
              <PrivateRoute path="/category" component={Category}/>
              <PrivateRoute path="/products"  component={Products}/>
              <PrivateRoute path="/orders"  component={Orders}/>

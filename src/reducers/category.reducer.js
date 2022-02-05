@@ -18,6 +18,7 @@ const buildNewCategories=(parentId,categories,category)=>{
                 _id: category._id,
                 name:category.name,
                 slug:category.slug,
+                type:category.type,
                 children: []
             }
         ]
@@ -31,6 +32,7 @@ const buildNewCategories=(parentId,categories,category)=>{
                 name: category.name,
                 slug: category.slug,
                 parentId: category.ParentId,
+                type:category.type,
                 children: []
              };
             myCategories.push({
@@ -48,44 +50,84 @@ const buildNewCategories=(parentId,categories,category)=>{
 }
 
 
-const initial=(state=initState,action) =>{
-    console.log(action)
-     
-     switch(action.type){
-         case categoryConstants.GET_ALL_CATEGORIES_SUCCESS:
-             state = {
-                 ...state,
-                 categories:action.payload.categories
-             }
-             break;
-         case categoryConstants.ADD_NEW_CATEGORY_REQUEST:
-             state={
-                 ...state,
-                 loading:true
-             }
-             break;
-          case categoryConstants.ADD_NEW_CATEGORY_SUCCESS:
-              const category=action.payload.category;
-              const updatedCategories=buildNewCategories(category.parentId,state.categories,category);
-              console.log(updatedCategories);
-             state={
-                 ...state,
-                 categories: updatedCategories,
-                 loading:false
-             }
-             break;
-          case categoryConstants.ADD_NEW_CATEGORY_FAILURE:
-              state={
-                  ...initState
+const initial = (state = initState, action) => {
+  console.log(action);
 
-              }
-             break;
-             default:
-            
-     }
-    
-     return state;
+  switch (action.type) {
+    case categoryConstants.GET_ALL_CATEGORIES_SUCCESS:
+      state = {
+        ...state,
+        categories: action.payload.categories,
+      };
+      break;
+    case categoryConstants.ADD_NEW_CATEGORY_REQUEST:
+      state = {
+        ...state,
+        loading: true,
+      };
+      break;
+    case categoryConstants.ADD_NEW_CATEGORY_SUCCESS:
+      const category = action.payload.category;
+      const updatedCategories = buildNewCategories(
+        category.parentId,
+        state.categories,
+        category
+      );
+      console.log(updatedCategories);
+      state = {
+        ...state,
+        categories: updatedCategories,
+        loading: false,
+      };
+      break;
+    case categoryConstants.ADD_NEW_CATEGORY_FAILURE:
+      state = {
+        ...initState,
+      };
+      break;
+    case categoryConstants.UPDATE_CATEGORIES_REQUEST:
+      state = {
+        ...state,
+        loading: true,
+      };
+      break;
+    case categoryConstants.UPDATE_CATEGORIES_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+      };
+      break;
+    case categoryConstants.UPDATE_CATEGORIES_FAILURE:
+      state = {
+        ...state,
+        error: action.payload.error,
+        loading: false,
+      };
+      break;
+    case categoryConstants.DELETE_CATEGORIES_REQUEST:
+      state = {
+        ...state,
+        loading: true,
+      };
+      break;
+    case categoryConstants.DELETE_CATEGORIES_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+      };
+      break;
+    case categoryConstants.DELETE_CATEGORIES_FAILURE:
+      state = {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+      break;
 
-}
+    default:
+  }
+
+  return state;
+};
 
 export default initial;

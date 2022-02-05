@@ -79,6 +79,7 @@ function Category(props) {
         value: category._id,
         name: category.name,
         parentId: category.parentId,
+        type: category.type
       });
       if (category.children.length > 0) {
         createCategoryList(category.children, options);
@@ -149,11 +150,7 @@ function Category(props) {
       form.append("type", item.type);
     });
 
-    dispatch(updateCategories(form)).then((result) => {
-      if (true) {
-        dispatch(getAllCategory());
-      }
-    });
+    dispatch(updateCategories(form));
 
     setUpdateCategoryModal(false);
   };
@@ -181,6 +178,7 @@ function Category(props) {
         }
       });
     }
+    setDeleteCategoryModal(false);
   };
 
   const renderDeleteCategoryModal = () => {
