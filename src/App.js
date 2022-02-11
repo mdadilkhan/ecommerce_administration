@@ -23,9 +23,12 @@ const auth = useSelector(state => state.auth)
   useEffect(() => {
     if(!auth.authenticate){
         dispatch(isUserLoggedIn());
-    };
-    dispatch(getInitialData());
-},); 
+    }
+    if(auth.authenticate){
+      dispatch(getInitialData());
+    }
+    
+},[auth.authenticate, dispatch]); 
 
 
   return (

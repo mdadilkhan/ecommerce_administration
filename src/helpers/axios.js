@@ -10,7 +10,7 @@ const token=window.localStorage.getItem('token');
 const axiosInstace=axios.create({
     baseURL: api,
     headers: {
-        'uthorization': token ? `Bearer ${token}` : ''
+        'authorization': token ? `Bearer ${token}` : ''
     }
 });
 
@@ -32,8 +32,8 @@ axiosInstace.interceptors.response.use(
     return res;
   },(error) => {
     console.log(error.response);
-    const { status } = error.response;
-    if (status === 500) {
+    const  status  = error.response ? error.response : 5000;
+    if (status && status === 500) {
       localStorage.clear();
       store.dispatch({ type: authConstants.LOGOUT_SUCCESS });
     }
